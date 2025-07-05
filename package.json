@@ -11,5 +11,8 @@
   "description": "A lightweight and developer-friendly toolkit for robust error handling in Express.js applications.\nIncludes ready-to-use custom error classes, an async route error handler wrapper, a global error handler middleware, and a convenient 'not found' route handler.\nDesigned to simplify error management, reduce boilerplate, and improve app reliability — all with TypeScript support and easy integration.",
   "dependencies": {
     "http-status-toolkit": "^1.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }
