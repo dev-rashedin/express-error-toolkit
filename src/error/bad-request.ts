@@ -1,4 +1,4 @@
-import { StatusCodes } from "../constants/httpStatus";
+import { StatusCodes } from "http-status-toolkit";
 import CustomAPIError from "./custom-api";
 
 
