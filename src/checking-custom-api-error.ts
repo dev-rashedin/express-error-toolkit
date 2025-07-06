@@ -1,4 +1,4 @@
-import { CustomAPIError } from './error/custom-api-error';
+import { CustomAPIError } from './error';
 
 export function isCustomAPIError(err: unknown): err is CustomAPIError {
   return (

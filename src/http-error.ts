@@ -1,4 +1,4 @@
-import { CustomAPIError } from './error/custom-api-error';
+import { CustomAPIError } from './error';
 
 export function httpError(
   statusCode: number,

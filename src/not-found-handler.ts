@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { NotFoundError } from './error/not-found-error';
+import { NotFoundError } from './error';
 
 
 

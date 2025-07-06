@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 import { isCustomAPIError } from './checking-custom-api-error'; 
-import { CustomAPIError } from './error/custom-api-error';
+import { CustomAPIError } from './error';
 
 export interface ErrorResponse {
   success: false;

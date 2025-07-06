@@ -5,7 +5,7 @@ import {
   UnauthenticatedError,
   ConflictError,
   TooManyRequestsError,
-} from '../src/error/bad-request-error'; 
+} from '../src/error'; 
 
 describe('Error Classes', () => {
   it('BadRequestError should have correct properties', () => {

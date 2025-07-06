@@ -1,5 +1,5 @@
 import { isCustomAPIError } from '../src/checking-custom-api-error';
-import { BadRequestError } from '../src/error/bad-request-error';
+import { BadRequestError } from '../src/error';
 
 describe('isCustomAPIError()', () => {
   it('should return true for custom errors', () => {
