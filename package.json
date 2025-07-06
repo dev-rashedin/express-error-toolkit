@@ -1,20 +1,46 @@
 {
   "name": "express-error-toolkit",
   "version": "0.1.0-beta.1",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "description": "A lightweight and developer-friendly toolkit for robust error handling in Express.js applications.\nIncludes ready-to-use custom error classes, an async route error handler wrapper, a global error handler middleware, and a convenient 'not found' route handler.\nDesigned to simplify error management, reduce boilerplate, and improve app reliability — all with TypeScript support and easy integration.",
   "author": "Rashedin Islam <rashedinislam.06@gmail.com>",
   "license": "MIT",
-  "description": "A lightweight and developer-friendly toolkit for robust error handling in Express.js applications.\nIncludes ready-to-use custom error classes, an async route error handler wrapper, a global error handler middleware, and a convenient 'not found' route handler.\nDesigned to simplify error management, reduce boilerplate, and improve app reliability — all with TypeScript support and easy integration.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dev-rashedin/express-error-toolkit.git"
+  },
+  "homepage": "https://github.com/dev-rashedin/express-error-toolkit#readme",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "check": "npm run build && npm run test",
+    "release": "release-it"
+  },
+  "keywords": [],
   "dependencies": {
     "http-status-toolkit": "^1.0.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "express": "^5.1.0",
+    "release-it": "^19.0.3",
     "typescript": "^5.8.3"
   }
 }
