@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { StatusCodes } from 'http-status-toolkit';
-import { NotFoundError } from './error';
+import { NotFoundError } from './error/not-found-error';
 
 
 
