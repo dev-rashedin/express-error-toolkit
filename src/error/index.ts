@@ -4,5 +4,6 @@ import { NotFoundError } from './not-found-error';
 import { UnauthenticatedError } from './unauthenticated-error';
 import { ConflictError } from './conflict-error';
 import { ForbiddenError } from './forbidden-error';
+import { ValidationError } from './validation-error';
 
-export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError };
+export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError, ValidationError };
