@@ -1,11 +1,18 @@
-import { NextFunction, Request, Response } from "express";
-import { StatusCodes } from "http-status-toolkit";
+import { Request, Response, NextFunction } from 'express';
+import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 
 interface CustomError extends Error {
   statusCode?: number;
-  details?: string | null;
+  errorDetails?: string | object | null;
+  stack?: string;
 }
 
+interface ErrorResponse {
+  success: false;
+  message: string;
+  errorDetails?: string | object | null;
+  stack?: string;
+}
 
 export const globalErrorHandler = (
   err: CustomError,
@@ -13,23 +20,30 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  let status = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
-  let message = err.message || 'Something went wrong, please try again later.';
+  const statusCode = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
 
-  const notFound = StatusCodes.NOT_FOUND;
+  const message =
+    err.message?.trim() || getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR);
 
-  const errorResponse: {
-    success: boolean;
-    error: string;
-    details?: string | null;
-  } = {
+  const errorResponse: ErrorResponse = {
     success: false,
-    error: message,
+    message,
   };
 
-  if (err.details) {
-    errorResponse.details = err.details;
+  if (err.errorDetails) {
+    errorResponse.errorDetails = err.errorDetails;
   }
 
-  res.status(status).json(errorResponse);
+  if (process.env.NODE_ENV === 'development' && err.stack) {
+    errorResponse.stack = err.stack;
+  }
+
+  // Logging
+  if (process.env.NODE_ENV === 'development') {
+    console.error(err);
+  } else {
+    console.error(`[${new Date().toISOString()}] ${err.name}: ${message}`);
+  }
+
+  res.status(statusCode).json(errorResponse);
 };
