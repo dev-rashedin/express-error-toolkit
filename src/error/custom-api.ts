@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-toolkit";
 
-class CustomAPIError extends Error {
+export class CustomAPIError extends Error {
 
   public statusCode: number;
   public details: string | object | null;
@@ -15,5 +15,3 @@ class CustomAPIError extends Error {
   }
 }
 
-
-export default CustomAPIError;

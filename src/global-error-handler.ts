@@ -7,13 +7,22 @@ interface CustomError extends Error {
 }
 
 
-const errorHandlerMiddleware = (err: CustomError, req: Request, res: Response, next: NextFunction) => { 
+export const globalErrorHandler = (
+  err: CustomError,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let status = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
-  let message = err.message || "Something went wrong, please try again later.";
+  let message = err.message || 'Something went wrong, please try again later.';
 
-  const notFound = StatusCodes.NOT_FOUND
+  const notFound = StatusCodes.NOT_FOUND;
 
-  const errorResponse: { success: boolean; error: string; details?: string | null} = {
+  const errorResponse: {
+    success: boolean;
+    error: string;
+    details?: string | null;
+  } = {
     success: false,
     error: message,
   };
@@ -23,6 +32,4 @@ const errorHandlerMiddleware = (err: CustomError, req: Request, res: Response, n
   }
 
   res.status(status).json(errorResponse);
-}
-
-export default errorHandlerMiddleware;
+};
