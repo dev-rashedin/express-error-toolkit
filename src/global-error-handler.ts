@@ -1,11 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
-
-interface CustomError extends Error {
-  statusCode?: number;
-  errorDetails?: string | object | null;
-  stack?: string;
-}
+import { isCustomAPIError } from './checking-custom-api-error'; 
+import { CustomAPIError } from './error';
 
 interface ErrorResponse {
   success: false;
@@ -15,34 +11,43 @@ interface ErrorResponse {
 }
 
 export const globalErrorHandler = (
-  err: CustomError,
+  err: unknown,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const statusCode = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+  let statusCode: number = StatusCodes.INTERNAL_SERVER_ERROR;
+  let message = getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR);
+  let errorDetails: string | object | null | undefined;
+  let stack: string | undefined;
 
-  const message =
-    err.message?.trim() || getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR);
+  if (err instanceof Error) {
+    if (isCustomAPIError(err)) {  
+      const customErr = err as CustomAPIError;
+      statusCode = customErr.statusCode || statusCode;
+      message = customErr.message.trim() || message;
+      errorDetails = customErr.errorDetails;
+    } else {
+      message = err.message || message;
+    }
+    stack = err.stack;
+  }
 
   const errorResponse: ErrorResponse = {
     success: false,
     message,
   };
 
-  if (err.errorDetails) {
-    errorResponse.errorDetails = err.errorDetails;
+  if (errorDetails) {
+    errorResponse.errorDetails = errorDetails;
   }
 
-  if (process.env.NODE_ENV === 'development' && err.stack) {
-    errorResponse.stack = err.stack;
+  if (process.env.NODE_ENV === 'development' && stack) {
+    errorResponse.stack = stack;
   }
 
-  // Logging
   if (process.env.NODE_ENV === 'development') {
     console.error(err);
-  } else {
-    console.error(`[${new Date().toISOString()}] ${err.name}: ${message}`);
   }
 
   res.status(statusCode).json(errorResponse);
