@@ -26,12 +26,11 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup",
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "test": "jest",
-    "check": "npm run build && npm run test",
-    "release": "release-it"
+    "check": "npm run build && npm run test"
   },
   "keywords": [],
   "dependencies": {
@@ -40,7 +39,7 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "express": "^5.1.0",
-    "release-it": "^19.0.3",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   }
 }
