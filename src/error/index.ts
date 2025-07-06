@@ -5,5 +5,6 @@ import { UnauthenticatedError } from './unauthenticated-error';
 import { ConflictError } from './conflict-error';
 import { ForbiddenError } from './forbidden-error';
 import { ValidationError } from './validation-error';
+import { TooManyRequestsError } from './too-many-request-error';
 
-export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError, ValidationError };
+export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError, ValidationError, TooManyRequestsError };

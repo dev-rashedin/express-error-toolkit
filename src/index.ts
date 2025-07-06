@@ -1,4 +1,4 @@
-export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError, ValidationError } from './error'
+export { CustomAPIError, BadRequestError, NotFoundError, UnauthenticatedError, ConflictError, ForbiddenError, ValidationError, TooManyRequestsError } from './error'
 
 
 export { asyncHandler } from './async-handler'
