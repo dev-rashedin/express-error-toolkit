@@ -4,6 +4,7 @@ export class CustomAPIError extends Error {
   public statusCode: number;
   public errorDetails?: string | object | null;
 
+
   constructor(
     message: string,
     statusCode: number = StatusCodes.INTERNAL_SERVER_ERROR,
