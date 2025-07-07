@@ -1,26 +1,21 @@
 {
   "compilerOptions": {
-    // "target": "ES6",
     "target": "ES2020",
     "module": "ESNext",
     "moduleResolution": "node",
     "declaration": true,
     "declarationDir": "dist",
     "outDir": "./dist",
-    // "rootDir": "./src",
-    "rootDir": ".",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "express-error-toolkit": ["src/index.ts"]
-    }
+    "skipLibCheck": true
   },
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src", "example"]
+ "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "example", "test", "**/*.test.ts"]
 }

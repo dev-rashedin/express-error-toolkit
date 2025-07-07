@@ -4,6 +4,9 @@
   "description": "A lightweight and developer-friendly toolkit for robust error handling in Express.js applications.\nIncludes ready-to-use custom error classes, an async route error handler wrapper, a global error handler middleware, and a convenient 'not found' route handler.\nDesigned to simplify error management, reduce boilerplate, and improve app reliability — all with TypeScript support and easy integration.",
   "author": "Rashedin Islam <rashedinislam.06@gmail.com>",
   "license": "MIT",
+  "engines": {
+  "node": ">=14"
+},
   "repository": {
     "type": "git",
     "url": "https://github.com/dev-rashedin/express-error-toolkit.git"
@@ -27,13 +30,21 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
+    "prepare": "npm run build",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "test": "jest",
     "check": "npm run build && npm run test",
     "example": "tsx example/index.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "error-handling",
+    "middleware",
+    "typescript",
+    "async-handler",
+    "custom-errors"
+  ],
   "dependencies": {
     "http-status-toolkit": "^1.0.3"
   },

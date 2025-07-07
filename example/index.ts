@@ -15,11 +15,9 @@ app.get('/bad-request', asyncHandler(async (req, res) => {
 }))
 
 app.get('/error', asyncHandler(async (req, res) => {
-  throw httpError('Custom error', 499, 'hi hasan, hi hossen');
+  throw httpError('Custom error', 499, {info: 'extra info', details: 'extra details'});
 }))
-app.get('/error2', asyncHandler(async (req, res) => {
-  throw new Error('Custom error');
-}))
+
 
 
 
@@ -28,7 +26,6 @@ app.use(notFoundHandler);
 
 // global error handler
 app.use(globalErrorHandler);
-
 
 
 
