@@ -5,6 +5,9 @@ import {
   UnauthenticatedError,
   ConflictError,
   TooManyRequestsError,
+  CustomAPIError,
+  ValidationError,
+  ForbiddenError
 } from '../src/error'; 
 
 describe('Error Classes', () => {
@@ -44,5 +47,27 @@ describe('Error Classes', () => {
     expect(err.name).toBe('TooManyRequestsError');
     expect(err.statusCode).toBe(StatusCodes.TOO_MANY_REQUESTS);
     expect(err.message).toBe('Too many requests');
+  });
+
+  it('CustomAPIError should have correct properties', () => {
+    const err = new CustomAPIError('Custom error', StatusCodes.INTERNAL_SERVER_ERROR, 'Custom details');
+    expect(err.name).toBe('CustomAPIError');
+    expect(err.statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(err.message).toBe('Custom error');
+    expect(err.errorDetails).toBe('Custom details');
+  });
+
+  it('ValidationError should have correct properties', () => {
+    const err = new ValidationError('Validation error');
+    expect(err.name).toBe('ValidationError');
+    expect(err.statusCode).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(err.message).toBe('Validation error');
+  });
+
+  it('ForbiddenError should have correct properties', () => {
+    const err = new ForbiddenError('Forbidden error');
+    expect(err.name).toBe('ForbiddenError');
+    expect(err.statusCode).toBe(StatusCodes.FORBIDDEN);
+    expect(err.message).toBe('Forbidden error');
   });
 });
