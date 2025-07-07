@@ -14,19 +14,26 @@ A lightweight, production-ready error handling toolkit for Express.js applicatio
 
 It provides:
 
-- Custom error classes (`NotFoundError`, `BadRequestError`, etc.)
+- Custom error classes (`NotFoundError`, `BadRequestError`, `ValidationError`, etc.)
 - Express middleware: `globalErrorHandler`, `notFoundHandler`
-- An `asyncHandler` utility to handle async errors without boilerplate
+- An `asyncHandler` utility to catch async route errors without boilerplate
+- A flexible `httpError()` factory function
+- `isCustomAPIError()` type guard for better type safety
 - Re-exported utilities from [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit) — no need to install it separately
+
+---
 
 ## ✨ Features
 
 - ✅ Type-safe custom error classes
-- ✅ Centralized error-handling middleware
+- ✅ Centralized global error handler
 - ✅ Async error wrapper for route handlers
-- ✅ Built-in 404 (Not Found) handler
-- ✅ Out-of-the-box support for both CJS and ESM
+- ✅ Built-in 404 handler for unknown routes
+- ✅ `httpError()` factory for dynamic error creation
+- ✅ `isCustomAPIError()` type guard for safe narrowing
 - ✅ Includes `http-status-toolkit` exports (like `StatusCodes`)
+- ✅ Works with both CommonJS and ESM
+- ✅ First-class TypeScript support
 
 ---
 
