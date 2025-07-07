@@ -5,6 +5,30 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.0.0](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/1.0.0) – 2025-07-07
+
+### ✨ Features
+
+- ✅ Production-ready global error handler with optional stack trace
+- ✅ Ready-to-use `asyncHandler` for wrapping async route handlers
+- ✅ Built-in `notFoundHandler` middleware
+- ✅ Custom error classes:
+  - `BadRequestError`
+  - `NotFoundError`
+  - `ForbiddenError`
+  - `UnauthenticatedError`
+  - `ConflictError`
+  - `ValidationError`
+  - `TooManyRequestsError`
+- ✅ `httpError()` factory for creating custom errors dynamically
+- ✅ `isCustomAPIError()` type guard
+- ✅ Optional `errorDetails` support (string or object) across all error types
+- ✅ Full TypeScript support
+- ✅ Supports both CommonJS and ESM
+- ✅ Includes re-exports from `http-status-toolkit`
+
+---
+
 ## [0.1.0-beta.1](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/0.1.0-beta.1) – 2025-07-05
 
- - Initial Publish
+- Initial beta release

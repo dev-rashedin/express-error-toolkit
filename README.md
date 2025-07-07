@@ -3,7 +3,6 @@
 [![npm version](https://img.shields.io/npm/v/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![license](https://img.shields.io/npm/l/express-error-toolkit)](https://github.com/dev-rashedin/express-error-toolkit/blob/main/LICENSE)
-[![downloads](https://img.shields.io/npm/dw/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 [![GitHub stars](https://img.shields.io/github/stars/dev-rashedin/express-error-toolkit?style=social)](https://github.com/dev-rashedin/express-error-toolkit/stargazers)
 ![minified](https://badgen.net/bundlephobia/min/express-error-toolkit)
 ![minified gzip](https://badgen.net/bundlephobia/minzip/express-error-toolkit)
@@ -36,11 +35,29 @@ It provides:
 
 ---
 
-## 📦 Installation
+# 🚀 Installation Guide
+
+You can install **express-error-toolkit** using your favorite package manager.
+
+## Using npm
 
 ```bash
 npm install express-error-toolkit
 ```
+
+## Using yarn
+
+```bash
+yarn add express-error-toolkit
+```
+
+## Using pnpm
+
+```bash
+pnpm add express-error-toolkit
+```
+
+> ℹ️ Make sure you have `express` installed in your project, as this toolkit is built specifically to enhance Express.js error handling.
 
 ---
 
@@ -75,7 +92,15 @@ app.get('/test', (req, res) => {
 });
 ```
 
-Each custom error sets the correct `statusCode` and `name` automatically.
+Each custom error automatically sets the correct `statusCode` and `name`.
+
+You can also pass optional `errorDetails` as a string, object, or leave it out:
+
+```ts
+throw new BadRequestError('Invalid data', { field: 'email' });
+throw new BadRequestError('Invalid input', 'Missing required field');
+throw new BadRequestError('Generic client error');
+```
 
 ---
 
@@ -109,6 +134,14 @@ In development mode (`NODE_ENV=development`), the error stack trace will be incl
 import { httpError } from 'express-error-toolkit';
 
 throw httpError('Something custom', 418);
+```
+
+You can also pass optional `errorDetails` as a string, object, or leave it out:
+
+```ts
+throw new BadRequestError('Invalid data', { field: 'email' });
+throw new BadRequestError('Invalid input', 'Missing required field');
+throw new BadRequestError('Generic client error');
 ```
 
 ---
