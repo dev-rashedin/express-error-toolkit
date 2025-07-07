@@ -16,9 +16,9 @@ It provides:
 
 - Custom error classes (`NotFoundError`, `BadRequestError`, `ValidationError`, etc.)
 - Express middleware: `globalErrorHandler`, `notFoundHandler`
-- An `asyncHandler` utility to catch async route errors without boilerplate
-- A flexible `httpError()` factory function
-- `isCustomAPIError()` type guard for better type safety
+- An `asyncHandler` utility to handle async errors without boilerplate
+- A `httpError()` factory function to create custom error instances easily
+- `isCustomAPIError()` type guard for safe error type checks
 - Re-exported utilities from [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit) — no need to install it separately
 
 ---
@@ -26,14 +26,13 @@ It provides:
 ## ✨ Features
 
 - ✅ Type-safe custom error classes
-- ✅ Centralized global error handler
+- ✅ Centralized error-handling middleware
 - ✅ Async error wrapper for route handlers
-- ✅ Built-in 404 handler for unknown routes
-- ✅ `httpError()` factory for dynamic error creation
-- ✅ `isCustomAPIError()` type guard for safe narrowing
-- ✅ Includes `http-status-toolkit` exports (like `StatusCodes`)
-- ✅ Works with both CommonJS and ESM
-- ✅ First-class TypeScript support
+- ✅ Built-in 404 (Not Found) handler
+- ✅ Factory method for generating custom errors
+- ✅ Type guard for runtime error checking
+- ✅ Out-of-the-box support for both CJS and ESM
+- ✅ Includes `http-status-toolkit` exports (like `StatusCodes`, `getStatusMessage`)
 
 ---
 
@@ -104,7 +103,29 @@ In development mode (`NODE_ENV=development`), the error stack trace will be incl
 
 ---
 
-### 5. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
+### 5. **httpError()**: Create generic custom errors
+
+```ts
+import { httpError } from 'express-error-toolkit';
+
+throw httpError('Something custom', 418);
+```
+
+---
+
+### 6. **isCustomAPIError()**: Type guard for checking error type
+
+```ts
+import { isCustomAPIError } from 'express-error-toolkit';
+
+if (isCustomAPIError(err)) {
+  console.log(err.statusCode, err.message);
+}
+```
+
+---
+
+### 7. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
 
 ```ts
 import { StatusCodes, getStatusMessage } from 'express-error-toolkit';
@@ -118,12 +139,36 @@ res.status(StatusCodes.BAD_REQUEST).json({
 
 ## 🔧 Custom Error Classes Available
 
-| Error Class       | Default Message | Status Code |
-| ----------------- | --------------- | ----------- |
-| `NotFoundError`   | "Not Found"     | `404`       |
-| `BadRequestError` | "Bad Request"   | `400`       |
+| Error Class            | Default Message         | Status Code |
+|------------------------|-------------------------|-------------|
+| `BadRequestError`      | Bad Request              | `400`       |
+| `UnauthorizedError`    | Unauthorized             | `401`       |
+| `ForbiddenError`       | Forbidden                | `403`       |
+| `NotFoundError`        | Not Found                | `404`       |
+| `ConflictError`        | Conflict                 | `409`       |
+| `ValidationError`      | Unprocessable Entity     | `422`       |
+| `TooManyRequestsError` | Too Many Requests        | `429`       |
+| `CustomAPIError`       | Internal Server Error    | `500`       |
 
-_(More to be added in future updates)_
+---
+
+## 📂 Directory Structure
+
+```
+├── src/
+│   ├── error/
+│   │   ├── BadRequestError.ts
+│   │   ├── NotFoundError.ts
+│   │   └── ...
+│   ├── global-error-handler.ts
+│   ├── async-handler.ts
+│   ├── http-error.ts
+│   └── index.ts
+├── example/
+│   └── index.ts
+├── __tests__/
+│   └── *.test.ts
+```
 
 ---
 
@@ -131,8 +176,8 @@ _(More to be added in future updates)_
 
 - Fully written in TypeScript
 - Outputs:
-  - CommonJS: `dist/index.cjs.js`
-  - ESM: `dist/index.esm.js`
+  - CommonJS: `dist/index.cjs`
+  - ESM: `dist/index.js`
   - Types: `dist/index.d.ts`
 
 ---
@@ -146,3 +191,17 @@ MIT © [Rashedin Islam](https://www.rashedin.dev)
 ## 🙌 Acknowledgements
 
 This project includes and re-exports [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit), also created by me.
+
+
+## Contributions
+Feel free to suggest improvements or add new status codes by opening issues or pull requests on GitHub.
+
+
+## Links
+
+- **GitHub:** [Rashedin-063](https://github.com/dev-rashedin)
+- **Portfolio:** [rashedin.dev](https://www.rashedin.dev)
+
+---
+
+Made with ❤️ by [Rashedin Islam](https://www.rashedin.dev)
