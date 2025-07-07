@@ -1,5 +1,15 @@
 # express-error-toolkit
 
+[![npm version](https://img.shields.io/npm/v/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
+![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
+[![license](https://img.shields.io/npm/l/express-error-toolkit)](https://github.com/dev-rashedin/express-error-toolkit/blob/main/LICENSE)
+[![downloads](https://img.shields.io/npm/dw/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
+[![GitHub stars](https://img.shields.io/github/stars/dev-rashedin/express-error-toolkit?style=social)](https://github.com/dev-rashedin/express-error-toolkit/stargazers)
+![minified](https://badgen.net/bundlephobia/min/express-error-toolkit)
+![minified gzip](https://badgen.net/bundlephobia/minzip/express-error-toolkit)
+
+👉 [View on npm](https://www.npmjs.com/package/express-error-toolkit)
+
 A lightweight, production-ready error handling toolkit for Express.js applications — written in TypeScript with full support for both CommonJS and ESM.
 
 It provides:
@@ -93,7 +103,7 @@ In development mode (`NODE_ENV=development`), the error stack trace will be incl
 import { StatusCodes, getStatusMessage } from 'express-error-toolkit';
 
 res.status(StatusCodes.BAD_REQUEST).json({
-  message: getStatusMessage(StatusCodes.BAD_REQUEST)
+  message: getStatusMessage(StatusCodes.BAD_REQUEST),
 });
 ```
 
@@ -101,11 +111,12 @@ res.status(StatusCodes.BAD_REQUEST).json({
 
 ## 🔧 Custom Error Classes Available
 
-| Error Class        | Default Message  | Status Code |
-|--------------------|------------------|-------------|
-| `NotFoundError`    | "Not Found"      | `404`       |
-| `BadRequestError`  | "Bad Request"    | `400`       |
-*(More to be added in future updates)*
+| Error Class       | Default Message | Status Code |
+| ----------------- | --------------- | ----------- |
+| `NotFoundError`   | "Not Found"     | `404`       |
+| `BadRequestError` | "Bad Request"   | `400`       |
+
+_(More to be added in future updates)_
 
 ---
 
