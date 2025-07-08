@@ -11,6 +11,8 @@
 
 A lightweight, production-ready error handling toolkit for Express.js applications — written in TypeScript with full support for both CommonJS and ESM.
 
+If you like the project, please give the project a GitHub ⭐
+
 It provides:
 
 - Custom error classes (`NotFoundError`, `BadRequestError`, `ValidationError`, etc.)

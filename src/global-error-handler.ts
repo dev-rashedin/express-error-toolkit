@@ -7,7 +7,7 @@ export interface ErrorResponse {
   success: false;
   message: string;
   errorDetails?: string | object | null;
-  stack?: string;
+  stack?: string | string[];
 }
 
 export const globalErrorHandler = (
@@ -44,6 +44,13 @@ export const globalErrorHandler = (
 
   if (process.env.NODE_ENV === 'development' && stack) {
     errorResponse.stack = stack;
+  }
+
+  const isDev = process.env.NODE_ENV?.trim() === 'development';
+  const showStack = process.env.SHOW_STACK !== 'false'; 
+
+  if (isDev && stack && showStack) {
+    errorResponse.stack = stack.split('\n').map((line) => line.trim());;
   }
 
   if (process.env.NODE_ENV === 'development') {
