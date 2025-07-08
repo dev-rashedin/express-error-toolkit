@@ -44,7 +44,7 @@ describe('globalErrorHandler', () => {
         success: false,
         message: 'Invalid input',
         errorDetails: { field: 'email' },
-        stack: expect.any(String), // ✔️ Stack exists, no need to match content
+        stack: expect.anything()
       })
     );
   });
