@@ -1,19 +1,20 @@
 export {
-  BadRequestError,
   NotFoundError,
-  UnauthenticatedError,
   ConflictError,
-  TooManyRequestsError,
   CustomAPIError,
+  ForbiddenError,
+  BadRequestError,
   ValidationError,
-  ForbiddenError
+  UnauthenticatedError,
+  TooManyRequestsError
 } from '../src/error'; 
 
 
+export { httpError } from './http-error'
 export { asyncHandler } from './async-handler'
-export { globalErrorHandler } from './global-error-handler'
 export { notFoundHandler } from './not-found-handler'
-export {httpError} from './http-error'
+export { isCustomAPIError } from './checking-custom-api-error'
+export { globalErrorHandler, setErrorOptions } from './global-error-handler';
 
 
 export { StatusCodes, getStatusMessage } from 'http-status-toolkit'

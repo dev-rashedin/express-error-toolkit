@@ -3,7 +3,6 @@
 [![npm version](https://img.shields.io/npm/v/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![license](https://img.shields.io/npm/l/express-error-toolkit)](https://github.com/dev-rashedin/express-error-toolkit/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/dev-rashedin/express-error-toolkit?style=social)](https://github.com/dev-rashedin/express-error-toolkit/stargazers)
 ![minified](https://badgen.net/bundlephobia/min/express-error-toolkit)
 ![minified gzip](https://badgen.net/bundlephobia/minzip/express-error-toolkit)
 
@@ -59,6 +58,7 @@ yarn add express-error-toolkit
 pnpm add express-error-toolkit
 ```
 
+> ⚙️ Requires **Node.js v14 or higher**.
 > ℹ️ Make sure you have `express` installed in your project, as this toolkit is built specifically to enhance Express.js error handling.
 
 ---
@@ -126,11 +126,28 @@ import { globalErrorHandler } from 'express-error-toolkit';
 app.use(globalErrorHandler);
 ```
 
-In development mode (`NODE_ENV=development`), the error stack trace will be included in the response.
+By default, it includes stack trace in development (`NODE_ENV=development`).
+
 
 ---
 
-### 5. **httpError()**: Create generic custom errors
+### 5. **Set Options Globally (Optional)**
+
+You can configure the toolkit behavior (e.g., hide stack traces even in dev):
+
+```ts
+import { setToolkitOptions } from 'express-error-toolkit';
+
+setToolkitOptions({
+  showStack: false,
+});
+```
+
+This overrides the default behavior (based on `NODE_ENV` or `.env` file).
+
+---
+
+### 6. **httpError()**: Create generic custom errors
 
 ```ts
 import { httpError } from 'express-error-toolkit';
@@ -148,7 +165,7 @@ throw new BadRequestError('Generic client error');
 
 ---
 
-### 6. **isCustomAPIError()**: Type guard for checking error type
+### 7. **isCustomAPIError()**: Type guard for checking error type
 
 ```ts
 import { isCustomAPIError } from 'express-error-toolkit';
@@ -160,7 +177,7 @@ if (isCustomAPIError(err)) {
 
 ---
 
-### 7. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
+### 8. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
 
 ```ts
 import { StatusCodes, getStatusMessage } from 'express-error-toolkit';
