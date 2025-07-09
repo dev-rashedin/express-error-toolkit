@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
-## [1.0.1](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/1.0.1) – 2025-07-09
+## [1.0.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.0.1) – 2025-07-09
 
 ### ✨ Improvements
 
@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
-## [1.0.0](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/1.0.0) – 2025-07-07
+## [1.0.0](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.0.0) – 2025-07-07
 
 ### ✨ Features
 
@@ -38,6 +38,6 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
-## [0.1.0-beta.1](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/0.1.0-beta.1) – 2025-07-05
+## [0.1.0-beta.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/0.1.0-beta.1) – 2025-07-05
 
 - Initial beta release

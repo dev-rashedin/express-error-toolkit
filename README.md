@@ -251,7 +251,7 @@ Feel free to suggest improvements or add new status codes by opening issues or p
 
 ## Links
 
-- **GitHub:** [Rashedin-063](https://github.com/dev-rashedin)
+- **GitHub:** [dev-rashedin](https://github.com/dev-rashedin)
 - **Portfolio:** [rashedin.dev](https://www.rashedin.dev)
 
 ---
