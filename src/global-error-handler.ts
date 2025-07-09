@@ -6,6 +6,7 @@ import { CustomAPIError } from './error';
 // Internal config object (optional override)
 let errorOptions = {
   showStack: process.env.SHOW_STACK !== 'false',
+  logError: process.env.LOG_ERROR !== 'false',
 };
 
 export function setErrorOptions(
@@ -36,8 +37,8 @@ export const globalErrorHandler = (
   let errorDetails: string | object | null | undefined;
   let stack: string | undefined;
 
+
   const isDev = process.env.NODE_ENV?.trim() === 'development';
-  const showStack = process.env.SHOW_STACK !== 'false'; 
 
   if (err instanceof Error) {
     if (isCustomAPIError(err)) {  
@@ -60,16 +61,11 @@ export const globalErrorHandler = (
     errorResponse.errorDetails = errorDetails;
   }
 
-  // if (process.env.NODE_ENV === 'development' && stack) {
-  //   errorResponse.stack = stack;
-  // }
-
-
-  if (isDev && stack && showStack) {
+  if (isDev && stack && errorOptions.showStack) {
     errorResponse.stack = stack.split('\n').map((line) => line.trim());;
   }
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDev && errorOptions.logError) {
     console.error(err);
   }
 

@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.0.1](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/1.0.1) – 2025-07-09
+
+### ✨ Improvements
+
+- Added support for optional stack trace and error logging in `globalErrorHandler`
+- Users can now control behavior using `.env` (`SHOW_STACK`, `LOG_ERROR`) or programmatically via `setToolkitOptions()`
+
+---
+
 ## [1.0.0](https://github.com/Rashedin-063/express-error-toolkit/releases/tag/1.0.0) – 2025-07-07
 
 ### ✨ Features

@@ -126,20 +126,20 @@ import { globalErrorHandler } from 'express-error-toolkit';
 app.use(globalErrorHandler);
 ```
 
-By default, it includes stack trace in development (`NODE_ENV=development`).
-
+By default, it includes stack trace and logs the error in development (`NODE_ENV=development`).
 
 ---
 
 ### 5. **Set Options Globally (Optional)**
 
-You can configure the toolkit behavior (e.g., hide stack traces even in dev):
+You can configure the toolkit behavior (e.g., hide stack traces and disable console logging even in development):
 
 ```ts
 import { setToolkitOptions } from 'express-error-toolkit';
 
 setToolkitOptions({
   showStack: false,
+  logError: false
 });
 ```
 
