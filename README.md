@@ -132,12 +132,19 @@ By default, it includes stack trace and logs the error in development (`NODE_ENV
 
 ### 5. **Set Options Globally (Optional)**
 
-You can configure the toolkit behavior (e.g., hide stack traces and disable console logging even in development):
+You can configure the error handling behavior (e.g., hide stack traces and disable console logging even in development) using either:
+
+```.env
+SHOW_STACK=false
+LOG_ERROR=false
+```
+
+or directly in your code:
 
 ```ts
-import { setToolkitOptions } from 'express-error-toolkit';
+import { setErrorOptions } from 'express-error-toolkit';
 
-setToolkitOptions({
+setErrorOptions({
   showStack: false,
   logError: false
 });

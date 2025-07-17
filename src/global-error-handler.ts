@@ -3,10 +3,13 @@ import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 import { isCustomAPIError } from './checking-custom-api-error'; 
 import { CustomAPIError } from './error';
 
+
+
 // Internal config object (optional override)
 let errorOptions = {
-  showStack: process.env.SHOW_STACK !== 'false',
-  logError: process.env.LOG_ERROR !== 'false',
+  showStack: process.env.SHOW_STACK !== 'false' && process.env.NODE_ENV !== 'production',
+  logError:
+    process.env.LOG_ERROR !== 'false' && process.env.NODE_ENV !== 'production',
 };
 
 export function setErrorOptions(
@@ -28,17 +31,15 @@ export interface ErrorResponse {
 
 export const globalErrorHandler = (
   err: unknown,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   let statusCode: number = StatusCodes.INTERNAL_SERVER_ERROR;
   let message = getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR);
   let errorDetails: string | object | null | undefined;
   let stack: string | undefined;
 
-
-  const isDev = process.env.NODE_ENV?.trim() === 'development';
 
   if (err instanceof Error) {
     if (isCustomAPIError(err)) {  
@@ -61,12 +62,19 @@ export const globalErrorHandler = (
     errorResponse.errorDetails = errorDetails;
   }
 
-  if (isDev && stack && errorOptions.showStack) {
+  if (stack && errorOptions.showStack) {
     errorResponse.stack = stack.split('\n').map((line) => line.trim());;
   }
 
-  if (isDev && errorOptions.logError) {
-    console.error(err);
+  // Log the error if configured to do so
+  if (errorOptions.logError) {
+    console.error('\x1b[35m%s\x1b[31m', 'Error Message:', errorResponse.message); 
+    if (errorResponse.errorDetails) {
+      console.error('Error Details:', errorResponse.errorDetails);
+    }
+    if (errorResponse.stack) {
+      console.error('\x1b[35m%s\x1b[32m', 'Stack Trace:', errorResponse.stack);
+    }
   }
 
   res.status(statusCode).json(errorResponse);
