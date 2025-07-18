@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![license](https://img.shields.io/npm/l/express-error-toolkit)](https://github.com/dev-rashedin/express-error-toolkit/blob/main/LICENSE)
+[![downloads](https://img.shields.io/npm/dm/http-status-toolkit)](https://www.npmjs.com/package/http-status-toolkit)
 ![minified](https://badgen.net/bundlephobia/min/express-error-toolkit)
 ![minified gzip](https://badgen.net/bundlephobia/minzip/express-error-toolkit)
 
