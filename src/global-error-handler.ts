@@ -3,34 +3,8 @@ import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 import { isCustomAPIError } from './checking-custom-api-error'; 
 import { CustomAPIError } from './error';
 
-const colors = {
-  reset: '\x1b[0m',
-  bold: '\x1b[1m',
-  red: '\x1b[31m',
-  yellow: '\x1b[33m',
-  green: '\x1b[32m',
-};
 
-function boldRed(text: string) {
-  return `${colors.bold}${colors.red}${text}${colors.reset}`;
-}
-function red(text: string) {
-  return `${colors.red}${text}${colors.reset}`;
-}
 
-function boldYellow(text: string) {
-  return `${colors.bold}${colors.yellow}${text}${colors.reset}`;
-}
-function yellow(text: string) {
-  return `${colors.yellow}${text}${colors.reset}`;
-}
-
-function boldGreen(text: string) {
-  return `${colors.bold}${colors.green}${text}${colors.reset}`;
-}
-function green(text: string) {
-  return `${colors.green}${text}${colors.reset}`;
-}
 
 // Internal config object (optional override)
 let errorOptions = {

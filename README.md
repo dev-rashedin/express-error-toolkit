@@ -126,11 +126,30 @@ import { globalErrorHandler } from 'express-error-toolkit';
 app.use(globalErrorHandler);
 ```
 
-By default, it includes stack trace and logs the error in development (`NODE_ENV=development`).
+By default, the handler includes the stack trace and logs the error in development.
+In production (`NODE_ENV=production`), both are automatically suppressed for safety.
 
 ---
 
-### 5. **Set Options Globally (Optional)**
+### 5. 🖍️ Readable Console Logs with ANSI Colors
+
+To enhance developer experience during debugging, this toolkit uses **ANSI escape codes** to style console logs — **no external dependencies** like `chalk`.
+
+Each part of the error log is color-coded using a traffic light scheme:
+
+- 🔴 **Error Message** – Red
+- 🟡 **Error Details** – Yellow
+- 🟢 **Stack Trace** – Green
+
+> Here's an example of how your console might look in development:
+
+![Colored error output preview](./assets/console-preview.png)
+
+If needed, you can disable this output using either `.env` or `setErrorOptions()`:
+
+---
+
+### 6. **Set Options Globally (Optional)**
 
 You can configure the error handling behavior (e.g., hide stack traces and disable console logging even in development) using either:
 
@@ -154,7 +173,7 @@ This overrides the default behavior (based on `NODE_ENV` or `.env` file).
 
 ---
 
-### 6. **httpError()**: Create generic custom errors
+### 7. **httpError()**: Create generic custom errors
 
 ```ts
 import { httpError } from 'express-error-toolkit';
@@ -165,26 +184,27 @@ throw httpError('Something custom', 418);
 You can also pass optional `errorDetails` as a string, object, or leave it out:
 
 ```ts
-throw new BadRequestError('Invalid data', { field: 'email' });
-throw new BadRequestError('Invalid input', 'Missing required field');
-throw new BadRequestError('Generic client error');
+throw httpError('Expectation failed', 417,  { reason: 'The server could not meet the Expect header requirements' });
+throw httpError('Failed Dependency', 424, 'This request relies on a previous request that failed' );
+throw httpError('Unavailable for legal reason', 451);
 ```
 
 ---
 
-### 7. **isCustomAPIError()**: Type guard for checking error type
+### 8. **isCustomAPIError()**: Type guard for checking error type
 
 ```ts
 import { isCustomAPIError } from 'express-error-toolkit';
 
 if (isCustomAPIError(err)) {
   console.log(err.statusCode, err.message);
+  // your rest of the code 
 }
 ```
 
 ---
 
-### 8. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
+### 9. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
 
 ```ts
 import { StatusCodes, getStatusMessage } from 'express-error-toolkit';
