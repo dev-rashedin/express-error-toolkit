@@ -2,9 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 import { isCustomAPIError } from './checking-custom-api-error'; 
 import { CustomAPIError } from './error';
-
-
-
+import { boldRed, red, boldYellow, yellow, boldGreen, green } from './utils/console-colors';
 
 // Internal config object (optional override)
 let errorOptions = {
@@ -21,7 +19,6 @@ export function setErrorOptions(
     ...options,
   };
 }
-
 
 export interface ErrorResponse {
   success: false;

@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.1.0](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.0) – 2025-07-18
+
+### ✨ Improvements
+
+- Enhanced `globalErrorHandler` with smarter defaults:
+  - `showStack` and `logError` are now **enabled by default**, unless:
+    - explicitly set to `false`, **or**
+    - `NODE_ENV` is `'production'`
+- Added ANSI color formatting to make console errors more readable
+- Users can customize behavior via:
+  - `.env` (`SHOW_STACK=false`, `LOG_ERROR=false`)
+  - `setErrorOptions()` function in code
+- Included updated usage guide and console screenshot in README
+
+---
+
 ## [1.0.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.0.1) – 2025-07-09
 
 ### ✨ Improvements
