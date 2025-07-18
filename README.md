@@ -143,7 +143,7 @@ Each part of the error log is color-coded using a traffic light scheme:
 
 > Here's an example of how your console might look in development:
 
-![Colored error output preview](./assets/console-preview.png)
+![Colored error output preview](./assets/console-preview-1.1.1.png)
 
 If needed, you can disable this output using either `.env` or `setErrorOptions()`:
 

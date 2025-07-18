@@ -73,14 +73,21 @@ export const globalErrorHandler = (
 
   // Log the error if configured to do so
   if (errorOptions.logError) {
+    // log the error status
     console.error(
       `${boldRed('🔴 Error Status:')} ${red(String(errorResponse.status))}`
     );
+
+    console.error(); // empty line for better readability
+
+    // log the error message
     console.error(
-      `${boldRed('🔴 Error Message:')} ${red(String(errorResponse.message))}`
+      `${boldRed('🔴 Error Message:')} ${red((errorResponse.message))}`
     );
   
+    console.error();  // empty line for better readability
 
+ //  Log error details if available
     if (errorResponse.errorDetails) {
       console.error(boldYellow('🟡 Error Details:'));
       console.error(
@@ -92,6 +99,9 @@ export const globalErrorHandler = (
       );
     }
 
+    console.error();  // empty line for better readability
+
+    // Log stack trace if available
     if (errorResponse.stack) {
       console.error(boldGreen('🟢 Stack Trace:'));
       (errorResponse.stack as string[]).forEach((line) =>

@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.1.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.1) – 2025-07-19
+
+### ✨ Improvements
+
+- Console now logs the `statusCode` with styled ANSI output.
+- Further improved DX for debugging and tracing errors during development.
+
+---
+
 ## [1.1.0](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.0) – 2025-07-18
 
 ### ✨ Improvements
