@@ -33,6 +33,10 @@ export function green(text: string) : string {
 }
 
 
+export function bold (text: string) : string {
+  return `${colors.bold}${text}${colors.reset}`;
+}
+
 export function dimGray(text: string) : string {
   return `${colors.dimGray}${colors.underline}${text}${colors.reset}`;
 }

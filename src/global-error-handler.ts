@@ -10,31 +10,30 @@ import {
   boldGreen,
   green,
   dimGray,
+  bold,
 } from './utils/console-colors';
 import { centerText } from './utils';
+import { ErrorOptions, ErrorResponse } from './types';
+
+
 
 // Internal config object (optional override)
-let errorOptions = {
+let errorOptions: ErrorOptions = {
   showStack:
     process.env.SHOW_STACK !== 'false' && process.env.NODE_ENV !== 'production',
   logError:
     process.env.LOG_ERROR !== 'false' && process.env.NODE_ENV !== 'production',
+  introLine: `💥 Even the best code breaks sometimes! Let's debug...`,
 };
 
-export function setErrorOptions(options: Partial<typeof errorOptions>) {
+export function setErrorOptions(options: Partial<ErrorOptions>) {
   errorOptions = {
     ...errorOptions,
     ...options,
   };
 }
 
-export interface ErrorResponse {
-  success: false;
-  status: number;
-  message: string;
-  errorDetails?: string | object | null;
-  stack?: string | string[];
-}
+
 
 export const globalErrorHandler = (
   err: unknown,
@@ -75,7 +74,10 @@ export const globalErrorHandler = (
 
   // Log the error if configured to do so
   if (errorOptions.logError) {
-    console.error(`\n${centerText(dimGray('Error Log'))}\n`);
+  
+    if (errorOptions.introLine) { 
+        console.error(`\n${(bold(`${errorOptions.introLine}`))}\n`);
+    }
 
     // log the error status
     console.error(
@@ -117,7 +119,7 @@ export const globalErrorHandler = (
       if (remainingCount > 0) {
         console.error(
           dimGray(
-            `...and ${remainingCount} more lines. 💡 See full stack in error respons`
+            `...and ${remainingCount} more lines. 💡 See full stack in error response`
           )
         );
       }
