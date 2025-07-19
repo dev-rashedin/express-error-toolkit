@@ -9,7 +9,9 @@ import {
   yellow,
   boldGreen,
   green,
+  dimGray,
 } from './utils/console-colors';
+import { centerText } from './utils';
 
 // Internal config object (optional override)
 let errorOptions = {
@@ -73,6 +75,8 @@ export const globalErrorHandler = (
 
   // Log the error if configured to do so
   if (errorOptions.logError) {
+    console.error(`\n${centerText(dimGray('Error Log'))}\n`);
+
     // log the error status
     console.error(
       `${boldRed('🔴 Error Status:')} ${red(String(errorResponse.status))}`
@@ -82,12 +86,12 @@ export const globalErrorHandler = (
 
     // log the error message
     console.error(
-      `${boldRed('🔴 Error Message:')} ${red((errorResponse.message))}`
+      `${boldRed('🔴 Error Message:')} ${red(errorResponse.message)}`
     );
-  
-    console.error();  // empty line for better readability
 
- //  Log error details if available
+    console.error(); // empty line for better readability
+
+    //  Log error details if available
     if (errorResponse.errorDetails) {
       console.error(boldYellow('🟡 Error Details:'));
       console.error(
@@ -99,16 +103,25 @@ export const globalErrorHandler = (
       );
     }
 
-    console.error();  // empty line for better readability
+    console.error(); // empty line for better readability
 
     // Log stack trace if available
     if (errorResponse.stack) {
-      console.error(boldGreen('🟢 Stack Trace:'));
-      (errorResponse.stack as string[]).forEach((line) =>
-        console.error(green(line))
-      );
+      const stackLines = errorResponse.stack as string[];
+      const previewLines = stackLines.slice(0, 3);
+      const remainingCount = stackLines.length - previewLines.length;
+
+      console.error(boldGreen('🟢 Stack Trace (Preview):'));
+      previewLines.forEach((line) => console.error(green(line)));
+
+      if (remainingCount > 0) {
+        console.error(
+          dimGray(
+            `...and ${remainingCount} more lines. 💡 See full stack in error respons`
+          )
+        );
+      }
     }
   }
-
   res.status(statusCode).json(errorResponse);
 };

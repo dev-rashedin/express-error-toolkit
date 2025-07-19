@@ -1,6 +1,6 @@
 {
   "name": "express-error-toolkit",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A lightweight and developer-friendly toolkit for robust error handling in Express.js applications.\nIncludes ready-to-use custom error classes, an async route error handler wrapper, a global error handler middleware, and a convenient 'not found' route handler.\nDesigned to simplify error management, reduce boilerplate, and improve app reliability — all with TypeScript support and easy integration.",
   "author": "Rashedin Islam <rashedinislam.06@gmail.com>",
   "license": "MIT",
