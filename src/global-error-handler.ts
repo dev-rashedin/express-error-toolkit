@@ -33,7 +33,6 @@ export function setErrorOptions(options: Partial<ErrorOptions>) {
 }
 
 
-
 export const globalErrorHandler = (
   err: unknown,
   _req: Request,

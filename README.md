@@ -138,9 +138,9 @@ To enhance developer experience during debugging, this toolkit uses **ANSI escap
 
 Each part of the error log is styled using a traffic light-inspired color scheme:
 
-- 🔴 **Error Status & Message** – Red
-- 🟡 **Error Details** – Yellow
-- 🟢 **Stack Trace** – Green
+- 🔴 **Error Status & Message** – Red  
+- 🟡 **Error Details** – Yellow (optional; string or object)  
+- 🟢 **Stack Trace** – Green (shown only if available and enabled)
 
 > 🖼️ Example: Here's how the console might look in development mode:
 
