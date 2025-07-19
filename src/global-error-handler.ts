@@ -12,7 +12,6 @@ import {
   dimGray,
   bold,
 } from './utils/console-colors';
-import { centerText } from './utils';
 import { ErrorOptions, ErrorResponse } from './types';
 
 
@@ -74,24 +73,23 @@ export const globalErrorHandler = (
 
   // Log the error if configured to do so
   if (errorOptions.logError) {
-  
+
+    // log the intro line if it's true
     if (errorOptions.introLine) { 
         console.error(`\n${(bold(`${errorOptions.introLine}`))}\n`);
+    } else {
+      console.error();
     }
 
     // log the error status
     console.error(
-      `${boldRed('🔴 Error Status:')} ${red(String(errorResponse.status))}`
+      `${boldRed('🔴 Error Status:')} ${red(String(errorResponse.status))}\n`
     );
-
-    console.error(); // empty line for better readability
 
     // log the error message
     console.error(
-      `${boldRed('🔴 Error Message:')} ${red(errorResponse.message)}`
+      `${boldRed('🔴 Error Message:')} ${red(errorResponse.message)}\n`
     );
-
-    console.error(); // empty line for better readability
 
     //  Log error details if available
     if (errorResponse.errorDetails) {
@@ -103,9 +101,8 @@ export const globalErrorHandler = (
             : errorResponse.errorDetails
         )
       );
+      console.error();
     }
-
-    console.error(); // empty line for better readability
 
     // Log stack trace if available
     if (errorResponse.stack) {

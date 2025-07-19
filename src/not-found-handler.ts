@@ -5,7 +5,7 @@ import { NotFoundError } from './error';
 
 export const notFoundHandler = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ) => {
   const method = req.method || 'UNKNOWN_METHOD';

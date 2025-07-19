@@ -134,19 +134,39 @@ In production (`NODE_ENV=production`), both are automatically suppressed for saf
 
 ### 5. 🖍️ Readable Console Logs with ANSI Colors
 
-To enhance developer experience during debugging, this toolkit uses **ANSI escape codes** to style console logs — **no external dependencies** like `chalk`.
+To enhance developer experience during debugging, this toolkit uses **ANSI escape codes** — **no external dependencies like `chalk` required** — to make console logs more readable.
 
-Each part of the error log is color-coded using a traffic light scheme:
+Each part of the error log is styled using a traffic light-inspired color scheme:
 
-- 🔴 **Error Message** – Red
+- 🔴 **Error Status & Message** – Red
 - 🟡 **Error Details** – Yellow
 - 🟢 **Stack Trace** – Green
 
-> Here's an example of how your console might look in development:
+> 🖼️ Example: Here's how the console might look in development mode:
 
-![Colored error output preview](./assets/console-preview-1.1.1.png)
+![Colored error output preview](./assets/console-preview-1.1.2.png)
 
-If needed, you can disable this output using either `.env` or `setErrorOptions()`:
+---
+
+#### ✨ Customizing the Intro Line
+
+By default, an introductory line (*"Even the best code breaks sometimes! Let's debug..."*) is displayed before each error block.
+
+You can control this with the `introLine` option:
+
+```ts
+import { setErrorOptions } from 'express-error-toolkit';
+
+// Disable the intro line
+setErrorOptions({
+  introLine: false
+});
+
+// Customize the intro line
+setErrorOptions({
+  introLine: '🚨 Debugging session begins here...'
+});
+```
 
 ---
 

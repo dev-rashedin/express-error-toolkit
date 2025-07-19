@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.1.2](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.2) – 2025-07-19
+
+### ✨ Improvements
+
+- Introduced `introLine` to enhance developer experience (DX) when logging errors
+- Made `introLine` fully customizable through `setErrorOptions()` or by setting it to `false` to disable it
+
+
+---
+
 ## [1.1.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.1) – 2025-07-19
 
 ### ✨ Improvements
