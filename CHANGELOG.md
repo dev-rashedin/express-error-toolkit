@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.2.0](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.2.0) – 2025-08-09
+
+### ♻️ Changes
+ - Removed: The http-status-toolkit re-export from the package to keep the toolkit focused and lightweight.
+
+   > You can now install and import http-status-toolkit directly if you need it:
+
+```bash
+npm install http-status-toolkit
+```
+```ts
+import { StatusCodes } from 'http-status-toolkit';
+```
+
+---
+
 ## [1.1.2](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.1.2) – 2025-07-19
 
 ### ✨ Improvements
