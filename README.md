@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![license](https://img.shields.io/npm/l/express-error-toolkit)](https://github.com/dev-rashedin/express-error-toolkit/blob/main/LICENSE)
-[![downloads](https://img.shields.io/npm/dm/http-status-toolkit)](https://www.npmjs.com/package/http-status-toolkit)
+[![downloads](https://img.shields.io/npm/dm/express-error-toolkit)](https://www.npmjs.com/package/express-error-toolkit)
 ![minified](https://badgen.net/bundlephobia/min/express-error-toolkit)
 ![minified gzip](https://badgen.net/bundlephobia/minzip/express-error-toolkit)
 
@@ -20,7 +20,6 @@ It provides:
 - An `asyncHandler` utility to handle async errors without boilerplate
 - A `httpError()` factory function to create custom error instances easily
 - `isCustomAPIError()` type guard for safe error type checks
-- Re-exported utilities from [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit) — no need to install it separately
 
 ---
 
@@ -33,7 +32,6 @@ It provides:
 - ✅ Factory method for generating custom errors
 - ✅ Type guard for runtime error checking
 - ✅ Out-of-the-box support for both CJS and ESM
-- ✅ Includes `http-status-toolkit` exports (like `StatusCodes`, `getStatusMessage`)
 
 ---
 
@@ -225,17 +223,6 @@ if (isCustomAPIError(err)) {
 
 ---
 
-### 9. **Bonus**: Use status codes directly (re-exported from http-status-toolkit)
-
-```ts
-import { StatusCodes, getStatusMessage } from 'express-error-toolkit';
-
-res.status(StatusCodes.BAD_REQUEST).json({
-  message: getStatusMessage(StatusCodes.BAD_REQUEST),
-});
-```
-
----
 
 ## 🔧 Custom Error Classes Available
 
@@ -290,7 +277,7 @@ MIT © [Rashedin Islam](https://www.rashedin.dev)
 
 ## 🙌 Acknowledgements
 
-This project includes and re-exports [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit), also created by me.
+This project includes [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit), also created by me.
 
 
 ## Contributions
