@@ -280,8 +280,9 @@ MIT © [Rashedin Islam](https://www.rashedin.dev)
 This project includes [`http-status-toolkit`](https://www.npmjs.com/package/http-status-toolkit), also created by me.
 
 
-## Contributions
-Feel free to suggest improvements or add new status codes by opening issues or pull requests on GitHub.
+## 🤝 Contribution
+
+We welcome contributions! Please check out the [Contributing Guide](CONTRIBUTING.md).
 
 
 ## Links
