@@ -33,12 +33,20 @@ export function setErrorOptions(options: Partial<ErrorOptions>) {
 }
 
 
+
+
+
 export const globalErrorHandler = (
   err: unknown,
   _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
+  // 🚫 Ignoring harmless favicon.ico errors
+  if (_req.originalUrl === '/favicon.ico') {
+    return res.status(204).end();
+  }
+
   let statusCode: number = StatusCodes.INTERNAL_SERVER_ERROR;
   let message: string = getStatusMessage(StatusCodes.INTERNAL_SERVER_ERROR);
   let errorDetails: string | object | null | undefined;
@@ -70,27 +78,26 @@ export const globalErrorHandler = (
     errorResponse.stack = stack.split('\n').map((line) => line.trim());
   }
 
-  // Log the error if configured to do so
+  // Logging the error if configured to do so
   if (errorOptions.logError) {
-
     // log the intro line if it's true
-    if (errorOptions.introLine) { 
-        console.error(`\n${(bold(`${errorOptions.introLine}`))}\n`);
+    if (errorOptions.introLine) {
+      console.error(`\n${bold(`${errorOptions.introLine}`)}\n`);
     } else {
       console.error();
     }
 
-    // log the error status
+    // logging the error status
     console.error(
       `${boldRed('🔴 Error Status:')} ${red(String(errorResponse.status))}\n`
     );
 
-    // log the error message
+    // logging the error message
     console.error(
       `${boldRed('🔴 Error Message:')} ${red(errorResponse.message)}\n`
     );
 
-    //  Log error details if available
+    //  Logging error details if available
     if (errorResponse.errorDetails) {
       console.error(boldYellow('🟡 Error Details:'));
       console.error(
@@ -103,7 +110,7 @@ export const globalErrorHandler = (
       console.error();
     }
 
-    // Log stack trace if available
+    // Logging stack trace if available
     if (errorResponse.stack) {
       const stackLines = errorResponse.stack as string[];
       const previewLines = stackLines.slice(0, 3);
