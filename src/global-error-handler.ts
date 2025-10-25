@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { ErrorRequestHandler } from 'express';
 import { StatusCodes, getStatusMessage } from 'http-status-toolkit';
 import { isCustomAPIError } from './checking-custom-api-error';
 import { CustomAPIError } from './error';
@@ -38,15 +38,11 @@ export function setErrorOptions(options: Partial<ErrorOptions>) {
 
 
 
-export const globalErrorHandler = (
-  err: unknown,
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) => {
+export const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   // Ignoring harmless favicon.ico errors
   if (_req.originalUrl === '/favicon.ico') {
-    return res.status(204).end();
+   res.status(204).end();
+   return;
   }
 
   let statusCode: number = StatusCodes.INTERNAL_SERVER_ERROR;
