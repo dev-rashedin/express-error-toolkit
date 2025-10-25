@@ -2,6 +2,7 @@ export interface ErrorOptions {
   showStack: boolean;
   logError: boolean;
   introLine: string | boolean;
+  autoSuccessLog: boolean;
 }
 
 export interface ErrorResponse {

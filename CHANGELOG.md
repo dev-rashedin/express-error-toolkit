@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](https://semver.org) and follows [C
 
 ---
 
+## [1.2.1](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.2.1) – 2025-10-25
+
+### ♻️ Fixed
+- 🛠️ **Favicon request noise** — Added an internal check in `globalErrorHandler` to silently handle `/favicon.ico` requests, preventing unnecessary 404 logs when browsers auto-request the favicon.
+- ✅ Improved console cleanliness when running Express apps on ports previously used by frontend frameworks (e.g., Next.js, React).
+
+
 ## [1.2.0](https://github.com/dev-rashedin/express-error-toolkit/releases/tag/1.2.0) – 2025-08-09
 
 ### ♻️ Changes

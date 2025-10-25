@@ -22,6 +22,8 @@ let errorOptions: ErrorOptions = {
     process.env.SHOW_STACK !== 'false' && process.env.NODE_ENV !== 'production',
   logError:
     process.env.LOG_ERROR !== 'false' && process.env.NODE_ENV !== 'production',
+  autoSuccessLog:
+    process.env.AUTO_SUCCESS_LOG !== 'false' && process.env.NODE_ENV !== 'production',
   introLine: `💥 Even the best code breaks sometimes! Let's debug...`,
 };
 
@@ -32,7 +34,7 @@ export function setErrorOptions(options: Partial<ErrorOptions>) {
   };
 }
 
-
+// TODO
 
 
 
@@ -42,7 +44,7 @@ export const globalErrorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  // 🚫 Ignoring harmless favicon.ico errors
+  // Ignoring harmless favicon.ico errors
   if (_req.originalUrl === '/favicon.ico') {
     return res.status(204).end();
   }
